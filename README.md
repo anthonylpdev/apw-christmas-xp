@@ -9,7 +9,7 @@ Organisé par David RONAI ([@makio64](https://twitter.com/makio64)), cet événe
 - Mise en place d'une expérience créative et interactive sur la thématique de Noël
 - Aucune contrainte technique dès lors qu'il s'agit de techno web
 - L'expérience peut être 2D (ex: portfolio du Père Noël, refonte de la homepage du Santa Claus Village, etc) ou 3D
-- Obligation de mettre en place et présenter un moodboard et un petit texte résumé en appui afin d'expliquer sa démarche créative (texte + url du board dans votre README : Pinterest, Miro, Google Slide... à votre convenance)
+- Obligation de mettre en place et présenter un moodboard et un petit texte résumé en appui afin d'expliquer sa démarche créative (texte + url du board dans votre README : Pinterest, Miro, Figma, Google Slide... à votre convenance)
 
 ## Livrable
 - README avec un texte explicatif et le lien public de votre moodboard
