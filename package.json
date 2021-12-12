@@ -4,7 +4,8 @@
   "description": "![APW for Three.js](apw.png)",
   "main": "index.js",
   "scripts": {
-    "watch": "canvas-sketch snowflake.ts -- -p [ tsify --noImplicitAny ]",
+    "watch": "canvas-sketch main.ts -- -p [ tsify --noImplicitAny ]",
+    "build": "tsc --p tsconfig.json && canvas-sketch ./dest/main.js --dir ./public  --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

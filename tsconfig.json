@@ -1,0 +1,9 @@
+{
+   "compilerOptions": {
+    "target": "ES2016",
+    "module": "commonjs",
+    "outDir": "./dest",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}

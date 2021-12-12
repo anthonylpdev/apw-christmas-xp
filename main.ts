@@ -1,12 +1,11 @@
 const canvasSketch = require("canvas-sketch");
 const math = require("canvas-sketch-util/math");
 const crc32 = require("crc-32");
-// const tweakpane = require('tweakpane');
-import { Pane } from 'tweakpane';
+const ConfigPanel = require('./ConfigPanel')
 
 
 const settings = {
-  dimensions: [1080, 1080],
+  // dimensions: [1080, 1080],
   animate: true
 };
 
@@ -17,10 +16,6 @@ interface Props {
   time?: number;
   playhead?: number;
 }
-
-const pane = new Pane({
-  title: "Snowflake"
-});
 
 let params = {
   branches: 6,
@@ -45,6 +40,8 @@ let params = {
   inputSizeEnding: 15
 }
 
+const configPanel = new ConfigPanel(params);
+
 const sketch = () => {
   let globalRotation = 0;
   let rotationSpeed = 0.000;
@@ -56,8 +53,8 @@ const sketch = () => {
 
     context.save()
     context.translate(width * .5, height * .5);
-    // context.rotate(globalRotation);
-    // globalRotation += rotationSpeed;
+    context.rotate(globalRotation);
+    globalRotation += rotationSpeed;
 
 
     drawSnowflake(context);
@@ -255,44 +252,7 @@ function setParams() {
   params.inputAngleRatioEnding = parseInt(encodedName[7 % size], 16)
   params.inputSizeEnding = parseInt(encodedName[8 % size], 16)
 
-  pane.refresh();
+  configPanel.refresh();
 }
-
-
-function createPane() {
-  pane.addInput(params, "prenom");
-  let folder = pane.addFolder({
-    title: 'Global',
-    expanded: false
-  })
-  folder.addInput(params, "branches", { min: 1, max: 10, step: 1 })
-  folder.addInput(params, "constructLines")
-
-  folder = pane.addFolder({
-    title: 'Core',
-    expanded: true
-  })
-  folder.addInput(params, "inputStartCore", { min: 0x0, max: 0xF, step: 1 })
-  folder.addInput(params, "inputLengthCore", { min: 0x0, max: 0xF, step: 1 })
-  folder.addInput(params, "inputAngleCore", { min: 0x0, max: 0xF, step: 1 })
-  folder.addInput(params, "inputInternalCoreSpikes", { min: 0x0, max: 0x15, step: 1 })
-
-  folder = pane.addFolder({
-    title: 'Intermediate',
-    expanded: true
-  })
-  folder.addInput(params, "inputIntermediateSpikes", { min: 0x0, max: 0xF, step: 1 })
-  folder.addInput(params, "inputStartLengthIntermediate", { min: 0x0, max: 0xF, step: 1 })
-  folder.addInput(params, "inputStopLengthIntermediate", { min: 0x0, max: 0xF, step: 1 })
-
-  folder = pane.addFolder({
-    title: 'Ending',
-    expanded: true
-  })
-  folder.addInput(params, 'inputAngleRatioEnding', { min: 0x0, max: 0xF, step: 1 })
-  folder.addInput(params, 'inputSizeEnding', { min: 0x0, max: 0xF, step: 1 })
-}
-
-createPane();
 
 canvasSketch(sketch, settings);
