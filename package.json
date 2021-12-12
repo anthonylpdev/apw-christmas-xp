@@ -1,0 +1,35 @@
+{
+  "name": "apw-christmas-xp",
+  "version": "1.0.0",
+  "description": "![APW for Three.js](apw.png)",
+  "main": "index.js",
+  "scripts": {
+    "watch": "canvas-sketch snowflake.ts -- -p [ tsify --noImplicitAny ]",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonylpdev/apw-christmas-xp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthonylpdev/apw-christmas-xp/issues"
+  },
+  "homepage": "https://github.com/anthonylpdev/apw-christmas-xp#readme",
+  "devDependencies": {
+    "@tweakpane/core": "^1.0.7",
+    "@types/node": "^16.11.11",
+    "canvas-sketch": "^0.7.4",
+    "canvas-sketch-util": "^1.10.0",
+    "tsify": "^5.0.4",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "crc-32": "^1.2.0",
+    "fast-crc32": "^1.0.1",
+    "fast-crc32c": "^2.0.0",
+    "tweakpane": "^3.0.6"
+  }
+}
