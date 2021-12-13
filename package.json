@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "watch": "canvas-sketch main.ts -- -p [ tsify --noImplicitAny ]",
-    "build": "tsc --p tsconfig.json && canvas-sketch ./dest/main.js --dir ./public  --build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "snowpack dev",
+    "build": "snowpack build"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,10 @@
   },
   "homepage": "https://github.com/anthonylpdev/apw-christmas-xp#readme",
   "devDependencies": {
+    "@snowpack/plugin-typescript": "^1.2.1",
     "@tweakpane/core": "^1.0.7",
     "@types/node": "^16.11.11",
+    "@types/snowpack-env": "^2.3.4",
     "canvas-sketch": "^0.7.4",
     "canvas-sketch-util": "^1.10.0",
     "tsify": "^5.0.4",
@@ -31,6 +34,7 @@
     "crc-32": "^1.2.0",
     "fast-crc32": "^1.0.1",
     "fast-crc32c": "^2.0.0",
+    "snowpack": "^3.8.8",
     "tweakpane": "^3.0.6"
   }
 }
