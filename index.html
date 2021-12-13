@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Christmas Xp</title>
+    <script type="module" src="js/main.mjs"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: black;
+      }
+      canvas {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+      }
+      .hidden {
+        display: none !important;
+      }
+      .synn-modal {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color:rgba(0,0,0,.4);
+      }
+      .synn-modal-inner {
+        margin: 0 auto;
+        max-width: 50rem;
+        width: calc(100vw - 10rem);
+        text-align: center;
+        border: solid #003900 1px;
+        border-radius: 0.3rem;
+        padding: 1rem;
+        font-size: 1.3rem;
+        background: #003900;
+        box-shadow: 0 0 2rem #003900;
+        color: white;
+      }
+      .small {
+        padding-top: 0.5rem;
+        font-size: 0.9rem;
+      }
+      a {
+        text-decoration: none;
+        color: tomato;
+      }
+      p {
+        padding-bottom: 1rem;
+      }
+      p.small {
+        padding-bottom: 0;
+      }
+      #play {
+        padding: 0.8rem;
+        cursor: pointer;
+      }
+      .stroke-solid {
+        stroke-dashoffset: 0;
+        stroke-dashArray: 300;
+        stroke-width: 4px;
+        transition: stroke-dashoffset 1s ease,
+                    opacity 1s ease;
+      }
+      #play:hover .stroke-solid {
+        opacity: 1;
+        stroke-dashoffset: 300;
+      }
+      .small a {
+        color: grey;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="synn-modal" style="z-index: 2">
+      <div class="synn-modal-inner">
+        <h1>HeXmas</h1>
+        <p class="small">&nbsp;</p>
+        <p>
+          A musical hexagon tesselation experiment<br>
+          for <a href="https://www.twitch.tv/antho_parle_web">APW</a> Christmas contest
+        </p>
+        <p class="small">
+          This XP is using sound (check your volume level settings)
+        </p>
+        <svg version="1.1" id="play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="100px" width="100px"
+          viewBox="0 0 150 150" enable-background="new 0 0 100 100" xml:space="preserve">
+          <path class="stroke-solid" fill="none" stroke="tomato"  d="M49.9,2.5C23.6,2.8,2.1,24.4,2.5,50.4C2.9,76.5,24.7,98,50.3,97.5c26.4-0.6,47.4-21.8,47.2-47.7
+          C97.3,23.7,75.7,2.3,49.9,2.5"/>
+          <path class="icon" fill="tomato" d="M38,69c-1,0.5-1.8,0-1.8-1.1V32.1c0-1.1,0.8-1.6,1.8-1.1l34,18c1,0.5,1,1.4,0,1.9L38,69z"/>
+        </svg>
+        <p class="small">Coded by Synn</p>
+        <p class="small">~</p>
+        <p class="small"><a href="https://github.com/mrdoob/three.js/">three.js</a> - <a target="_blank" href="https://github.com/mrdoob/three.js/blob/dev/LICENSE">MIT License</a></p>
+        <p class="small"><a href="https://github.com/g200kg/webaudio-tinysynth">webaudio-tinysynth</a> - <a target="_blank" href="https://github.com/g200kg/webaudio-tinysynth/blob/master/LICENSE">Apache License 2.0</a></p>
+      </div>
+    </div>
+  </body>
+</html>
