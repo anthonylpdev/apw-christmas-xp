@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&display=swap");
+
 body {
   margin: 0px;
   padding: 0px;
-  overflow: hidden;
 
   background: linear-gradient(to bottom, #718ea7, #cedbe0);
 }
@@ -9,12 +10,10 @@ body {
 .experiment {
   display: flex;
   flex-direction: column;
-  width: 100vw;
   height: 100vh;
-  justify-content: space-around;
+  justify-content: center;
 }
 .panel {
-  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,4 +37,25 @@ form {
 
 .hide {
   display: none;
+}
+
+input {
+  border: none;
+  color: white;
+  text-align: center;
+  font-family: "Carter One", cursive;
+  font-size: 2rem;
+  border-bottom: 3px solid white;
+  background: linear-gradient(to bottom, #fff1, #fff3);
+  border-radius: 100%;
+  margin-bottom: 0.5em;
+}
+
+input::placeholder {
+  color: #fffa;
+  font-style: italic;
+}
+
+input:focus {
+  outline: none;
 }

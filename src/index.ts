@@ -2,6 +2,7 @@ import { ConfigPanel } from './ConfigPanel';
 import canvasSketch from 'canvas-sketch';
 import { encode } from './Encoder';
 import { Snowflake, SnowflakeInputProps } from './Snowflake';
+import random from 'canvas-sketch-util/random';
 
 const canvasDOM = document.querySelector('#scene');
 
@@ -9,7 +10,8 @@ const settings = {
     dimensions: [1080, 1080],
     animate: true,
     canvas: canvasDOM,
-    scaleToFit: true
+    scaleToFit: true,
+    hotkeys: false
 };
 
 interface Props {
@@ -43,13 +45,10 @@ let inputParams: SnowflakeInputProps = {
 
 const configPanel = new ConfigPanel(inputParams);
 
-const sketch = () => {
-    // let globalRotation = 0;
-    // let rotationSpeed = 0.000;
+const sketch = ({ context, width, height, }: Props) => {
     return ({ context, width, height, time }: Props) => {
         let snowflake = new Snowflake(inputParams);
         setParams();
-        // // context.fillStyle = "#9ED8F0";
         let gradient = context.createLinearGradient(0, 0, 0, height);
         gradient.addColorStop(0, "#aedbf0");
         gradient.addColorStop(1, "#3f7eb3");
@@ -59,12 +58,15 @@ const sketch = () => {
 
         context.save()
         context.translate(width * .5, height * .5);
-        // const scale = Math.min(800 / width, 800 / height);
-        // context.scale((1 - scale), 1 - scale)
-        // context.rotate(globalRotation);
-        // globalRotation += rotationSpeed;
+        let noiseX = random.noise1D(time, 0.1, 30);
+        let noiseY = random.noise1D(time! + 5000, 0.1, 30);
+        let noiseR = random.noise1D(time! + 10000, 0.01, Math.PI);
+        context.translate(noiseX, noiseY);
+        context.rotate(noiseR)
+
 
         snowflake.draw(context);
+        // drawConstructLines(context)
 
 
     };
@@ -88,7 +90,7 @@ function drawConstructLines(context: CanvasRenderingContext2D) {
     context.restore();
 }
 
-let inputPrenom = document.querySelector('#inputPrenom');
+let inputPrenom = document.querySelector('#inputPrenom')!;
 inputPrenom?.addEventListener('keyup', (event) => {
     inputParams.name = inputPrenom?.value;
     let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?name=' + inputParams.name;
@@ -108,7 +110,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const debugParam = urlParams.has('debug');
 if (debugParam) {
     configPanel.show();
-    document.querySelector('#start').classList.add('hide');
+    document.querySelector('#start')!.classList.add('hide');
 }
 
 const nameParam = urlParams.get('name');
