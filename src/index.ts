@@ -46,10 +46,10 @@ let inputParams: SnowflakeInputProps = {
 const configPanel = new ConfigPanel(inputParams);
 
 const sketch = ({ context, width, height, }: Props) => {
+    let gradient = context.createLinearGradient(0, 0, 0, height);
     return ({ context, width, height, time }: Props) => {
         let snowflake = new Snowflake(inputParams);
         setParams();
-        let gradient = context.createLinearGradient(0, 0, 0, height);
         gradient.addColorStop(0, "#aedbf0");
         gradient.addColorStop(1, "#3f7eb3");
 

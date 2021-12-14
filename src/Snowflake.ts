@@ -187,5 +187,4 @@ export interface SnowflakeInputProps {
         length: number;
     };
     name?: string;
-
 }
