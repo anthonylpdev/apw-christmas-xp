@@ -52,8 +52,6 @@ const renderer = new THREE.WebGLRenderer({ logarithmicDepthBuffer: false, antial
 renderer.setPixelRatio(window.devicePixelRatio);
 resize();
 
-// const controls = new OrbitControls(camera, renderer.domElement);
-
 const lightPos = 1000;
 const positions = [
   [lightPos, lightPos, lightPos],
@@ -71,7 +69,6 @@ for (const pos of positions) {
   light.position.set(...pos);
   lights.push(light);
   scene.add(light);
-  // scene.add( new THREE.PointLightHelper( light, 10 ) );
 }
 
 function fadeInHexagons(hexagons) {
