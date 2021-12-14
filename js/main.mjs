@@ -13,7 +13,6 @@ const trunk = hexagonTesselation({radius: 1, height: 43, tileSize: 0.9, color: '
 trunk.tesselation.position.z = -29;
 trunk.tesselation.rotation.z = -Math.PI/6;
 
-
 const hexagons0 = hexagonTesselation({radius: radius * 4, height: 1.5, color: '#555'});
 hexagons0.tesselation.position.z = +14;
 hexagons0.tesselation.rotation.z = -Math.PI/6;
@@ -115,19 +114,14 @@ MainLoop.setUpdate(dt => Tween.update(dt));
 MainLoop.setDraw(dt => renderer.render(scene, camera));
 MainLoop.start();
 
-// setInterval(() => {
-//   console.log(camera.position);
-//   console.log(camera.rotation);
-// }, 3000)
-// scene.add(trunk.tesselation, hexagons0.tesselation, hexagons1.tesselation, hexagons2.tesselation, hexagons3.tesselation, hexagons4.tesselation, hexagons5.tesselation, hexagons6.tesselation);
-
 let lvl = 0;
 let canGoNextLvl = false;
-document.querySelector('#play').addEventListener('click', playLvl0, { once: true });
-
+document.querySelector('#play').addEventListener('click', () => {
+  document.querySelector('.synn-modal').classList.add('hidden');
+  playLvl0();
+}, { once: true });
 
 function playLvl0() {
-  document.querySelector('.synn-modal').classList.add('hidden');
   fadeInHexagons(hexagons0);
   for (const t of hexagons0.tilemap.values()) t.material.roughness = 1.0;
   lastTween = Tween.create({duration: 6000, from: 1, to: 0.5, after: lastTween, animate: progress => {
@@ -323,9 +317,32 @@ function qrToAudioFreq(q, r) {
   return Math.pow(2, r/12) * 440;
 }
 
+const mapQtoInstrument = new Map([
+    [-10, 46],
+    [-9, 46],
+    [-8, 46],
+    [-7, 46],
+    [-6, 46],
+    [-5, 13],
+    [-4, 13],
+    [-3, 13],
+    [-2, 13],
+    [-1, 13],
+    [0, 13],
+    [1, 13],
+    [2, 13],
+    [3, 13],
+    [4, 13],
+    [5, 13],
+    [6, 115],
+    [7, 115],
+    [8, 115],
+    [9, 115],
+    [10, 115]
+  ]);
 function qrToSynthInstrument(q, r) {
   if (lvl == 0) return 85;
-  if (lvl == 1) return 13;
+  if (lvl == 1) return mapQtoInstrument.get(q);
   if (lvl == 2) return 0;
 }
 
@@ -360,86 +377,27 @@ function autoplay() {
   }})
 }
 
-// import { EXRLoader } from "./lib/three/examples/jsm/loaders/EXRLoader.js";
-// https://github.com/Mamboleoo/InfiniteTubes
-// let h = (elapsedT * 10 + 180) / 360;
-// for (const tile of hexagons.tilemap.values()) {
-//   let {q, r} = tile.userData.coord;
-//   if(q != 0) continue;
-//   tile.material.color = new THREE.Color(`hsl(${h},70%,60%)`);
-// }
 
-// level 1
-// Tween.create({loop: true, after: lastTween, animate: progress => {
-//   let h = (progress * 100 + 180) / 360;
-//   hexagons.tilemap.get('0,0').material.color = new THREE.Color(`hsl(${h},70%,60%)`);
-// }});
-
-
-// lastTween = Tween.create({duration: 0, after: lastTween, animate: progress => {
-//   if (progress != 1) return;
-//   hexagons2.tesselation.visible = true;
-// }});
-// lastTween = Tween.create({duration: 1000, after: lastTween, timing: 'bounce', easing: 'out',animate: progress => {
-//   hexagons2.tesselation.position.z = progress;
-// }})
-
-// lastTween = Tween.create({duration: 1000, from: 150, to: 0, after: lastTween, loop: true, yoyo: true, animate: progress => {
-//   lights[0].position.z = progress;
-// }})
-
-
-// const pmremGenerator = new THREE.PMREMGenerator(renderer);
-// pmremGenerator.compileEquirectangularShader();
-// const loader = new EXRLoader();
-// loader.setDataType(THREE.UnsignedByteType);
-// loader.load("img/snow.exr", texture => {
-//   const exrCubeRenderTarget = pmremGenerator.fromEquirectangular(texture);
-//   const newEnvMap = exrCubeRenderTarget ? exrCubeRenderTarget.texture : null;
-//   for (const tile of hexagons.tilemap.values()) {
-//     tile.material.envMap = newEnvMap;
-//     tile.material.needsUpdate = true;
-//   }
-//   texture.dispose();
-//   MainLoop.start();
-// });
-// const textureLoader = new THREE.TextureLoader();
-// textureLoader.load('img/env.png', function (texture) {
-//   texture.mapping = THREE.SphericalReflectionMapping;
-//   for (const tile of hexagons.tilemap.values()) {
-//     tile.material.envMap = texture;
-//     tile.material.needsUpdate = true;
-//   }
-//   MainLoop.start();
-// });
-
-// let neighbors = hexagons.getNeighbors(q, r);
-  // Tween.create({duration: 1000, animate: progress => {
-  //   for (const neighbor of neighbors) {
-  //     neighbor.scale.x = 1 - progress;
-  //     neighbor.scale.y = 1 - progress;
-  //   }
-  // }});
-  // const mapQtoInstrument = new Map([
-  //   [-10, 94],
-  //   [-9, 103],
-  //   [-8, 98],
-  //   [-7, 79],
-  //   [-6, 73],
-  //   [-5, 68],
-  //   [-4, 53],
-  //   [-3, 46],
-  //   [-2, 35],
-  //   [-1, 27],
-  //   [0, 0],
-  //   [1, 9],
-  //   [2, 15],
-  //   [3, 82],
-  //   [4, 85],
-  //   [5, 88],
-  //   [6, 89],
-  //   [7, 95],
-  //   [8, 114],
-  //   [9, 115],
-  //   [10, 117]
-  // ]);
+// const mapQtoInstrument = new Map([
+//   [-10, 94],
+//   [-9, 103],
+//   [-8, 98],
+//   [-7, 79],
+//   [-6, 73],
+//   [-5, 68],
+//   [-4, 53],
+//   [-3, 46],
+//   [-2, 35],
+//   [-1, 27],
+//   [0, 13],
+//   [1, 9],
+//   [2, 15],
+//   [3, 82],
+//   [4, 85],
+//   [5, 88],
+//   [6, 89],
+//   [7, 95],
+//   [8, 114],
+//   [9, 115],
+//   [10, 117]
+// ]);
